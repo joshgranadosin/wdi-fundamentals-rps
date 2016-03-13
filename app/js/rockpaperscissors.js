@@ -4,7 +4,7 @@
 'use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
+    console.log("Please choose either 'rock', 'paper', or 'scissors'.");
     return prompt();
 }
 function randomPlay() {
@@ -25,7 +25,7 @@ function getPlayerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `getInput()`.
-	if(move === null){
+	if(move == null){
 		return getInput();
 	}
 	else{
@@ -37,7 +37,7 @@ function getComputerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
-	if(move === null){
+	if(move == null){
 		return randomPlay();
 	}
 	else{
@@ -68,7 +68,7 @@ function getWinner(playerMove,computerMove) {
 	else if((playerMove === 'paper') && (computerMove === 'rock')){
 		winner = 'player';
 	}
-	else if((playerMove === 'scissors' && (computerMove === 'paper'){
+	else if((playerMove === 'scissors') && (computerMove === 'paper')){
 		winner = 'player';
 	}
 	
@@ -79,8 +79,24 @@ function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
+	var currentWinner;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
-    return [playerWins, computerWins];
+	while ((playerWins < 5) || (computerWins < 5)){
+		currentWinner = getWinner(getPlayerMove(),getComputerMove());
+		if (currentWinner === 'player'){
+		playerWins++;
+		}
+		else if (currentWinner === 'computer'){
+		computerWins++;
+		console.log('player has ' + playerWins + ' wins');
+		console.log('computer has ' + computerWins + ' wins');
+		}
+	}
+	if (playerWins === 5){
+	    return 'player';
+	}
+	else {
+	    return 'computer';
+	}
 }
-
+playToFive();
